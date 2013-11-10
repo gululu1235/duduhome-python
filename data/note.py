@@ -25,7 +25,7 @@ class NoteDao(object):
         return cursor
 
     def get_all_notes(self):
-        cursor = self.query('SELECT author, content, time FROM {} ORDER BY time'.format(self.table_name))
+        cursor = self.query('SELECT author, content, time FROM {0} ORDER BY time'.format(self.table_name))
         result = []
         for row in cursor:
             result.append({
@@ -36,5 +36,5 @@ class NoteDao(object):
         return result
 
     def put_note(self, note):
-        self.query('INSERT INTO {} (author, content) VALUES (%s, %s)'
+        self.query('INSERT INTO {0} (author, content) VALUES (%s, %s)'
                    .format(self.table_name), (note.get('author', ''), note.get('content', '')))
