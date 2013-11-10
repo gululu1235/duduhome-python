@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="message-app">
+<head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/message.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div ng-controller="messageController">
+    <div class="main-panel">
+        <div class="banner">
+            <h2>Du Du Home</h2>
+        </div>
+
+        <div ng-repeat="message in messages" class="{[{message.style}]} message">
+            <div class="icon">
+                <img ng-src="icon\{[{message.icon}]}.jpg" alt="{[{message.author}]}" style="border-radius: 6px;">
+            </div>
+            <div class="message">
+                <div class="message-time">{[{message.time}]}</div>
+                <div class="message-content">{[{message.content}]}</div>
+            </div>
+        </div>
+        <div class="new-message">
+            <form ng-submit="addMessage()">
+                <textarea tabindex="2" rows="4" class="message-body"
+                          style="color: rgb(136, 136, 136);" ng-model="newMessage" placeholder="这里是嘟嘟家的留言板，pupu我是on-call，请留言"></textarea>
+                <div style="margin-left:auto; margin-right:auto;display:block;width:400px;">
+                <input type="text" ng-model="author" class="message-author"
+                       placeholder="pupu你是谁？">
+                <input type="submit" value="pupu我去转告嘟嘟" class="message-button">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
