@@ -24,14 +24,18 @@ class NoteDao(object):
             cursor.execute(query, args)
         return cursor
 
-    def get_all_notes(self):
-        cursor = self.query('SELECT author, content, time FROM {0} ORDER BY time'.format(self.table_name))
+    def get_notes(self, id_from=None):
+        if id_from == None:
+            cursor = self.query('SELECT id, author, content, time FROM {0} ORDER BY time DESC LIMIT 20'.format(self.table_name))
+        else:
+            cursor = self.query('SELECT id, author, content, time FROM {0} WHERE id < {1} ORDER BY time DESC LIMIT 20'.format(self.table_name, id_from))
         result = []
         for row in cursor:
             result.append({
-                'author': row[0],
-                'content': row[1],
-                'time': row[2]
+                'id': row[0],
+                'author': row[1],
+                'content': row[2],
+                'time': row[3]
             })
         return result
 

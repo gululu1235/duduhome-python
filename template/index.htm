@@ -1,8 +1,10 @@
 <!doctype html>
 <html ng-app="message-app">
 <head>
-    <script src="js/angular.min.js"></script>
-    <script src="js/message.js"></script>
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src="js/angular.min.js"></script>
+    <script type='text/javascript' src="js/ng-infinite-scroll.min.js"></script>
+    <script type='text/javascript' src="js/message.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -12,7 +14,7 @@
             <h2>Du Du Home</h2>
         </div>
 
-        <div ng-repeat="message in messages" class="{[{message.style}]} message">
+        <div ng-repeat="message in messages" class="{[{message.style}]} message"  infinite-scroll="loadMoreMsg()" infinite-scroll-distance="3">
             <div class="icon">
                 <img ng-src="icon\{[{message.icon}]}.jpg" alt="{[{message.author}]}" style="border-radius: 6px;">
             </div>
